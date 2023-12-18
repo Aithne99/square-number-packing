@@ -5,8 +5,9 @@ import matplotlib.pyplot as plt
 
 MARGIN = 5
 numbers = True
-nrange = range(902, 903)
-csteps = 20
+#930, 31, 32
+nrange = range(65, 66)
+csteps = 10
 visualize = len(nrange) < 5 and csteps < 20 and max(nrange) < 200
 plotmode = len(nrange) > 20
 skiptest = True
@@ -23,7 +24,7 @@ for n in nrange:
     best_c = list()
     for iterator in range(1, csteps):
         c_ = iterator * (1 / csteps)
-        c_ = round(c_, 2)
+        c_ = round(c_, 3)
         N1 = N - (n * (1 - c_))
         N2 = N + (n * (1 - c_))
         #print(N1, N2)
@@ -85,6 +86,7 @@ for n in nrange:
 
                 y_coord += (1 - dir) * (n_itr)
                 x_coord += dir * (n_itr + 1)
+                #print(n_itr * wiggle)
                 wiggle = -wiggle
                 if wiggle < 0:
                     y_coord += 1
@@ -141,4 +143,5 @@ for n in nrange:
         diff_list.append(prev_diff)
 if plotmode:
     plt.plot(nrange, diff_list)
+    plt.plot(nrange, [n/2 for n in nrange])
     plt.show()
